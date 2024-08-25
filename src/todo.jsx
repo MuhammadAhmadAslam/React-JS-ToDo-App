@@ -1,22 +1,27 @@
 import { useState } from 'react';
 import "./App.css";
 import Ul from './ul';
-
 function Todo() {
   let [todoInput, todoInputFunction] = useState('');
   let [todo, setToDo] = useState([]);
 
   let addToDo = () => {
     if (todoInput) {
-      console.log('todo added');
-      console.log(todoInput);
       setToDo([todoInput, ...todo]);
-      console.log(todo, "====>todo");
       todoInputFunction('');
-    } else {
-      console.log('fill kar');
     }
   };
+
+
+  let deleteData = (index) => {
+      setToDo(todo.filter((todo , i) => index !== i))
+  }
+
+  let editData = (index) => {
+      let promptValue = prompt('Enter a Value')
+      setToDo(todo.map((todo,i) => index === i ? promptValue : todo))
+  }
+
 
   return (
     <main className='flex justify-center items-center flex-col'>
@@ -27,7 +32,7 @@ function Todo() {
         <div className="ul flex justify-center items-center flex-col w-full">
           <ul className='w-full px-5 py-2'>
             {todo.map((todo, index) => (
-              <Ul index={index} data={todo} />
+              <Ul index={index} data={[...todo]} editFunction={editData(index)} deleteFunction={() => deleteData(index)}/>
             ))}
           </ul>
         </div>
