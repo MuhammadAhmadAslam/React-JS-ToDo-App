@@ -30,9 +30,9 @@ function Todo() {
         <input type="text" placeholder='Enter A ToDo' value={todoInput} onChange={(event) => todoInputFunction(event.target.value)} className='border h-10 font-medium  border-blue-500 outline-blue-500 w-1/2'/>
         <button className='border border-blue-500 px-5 py-2 hover:scale-95 mt-7 font-semibold' onClick={addToDo}>Add To Do</button>
         <div className="ul flex justify-center items-center flex-col w-full">
-          <ul className='w-full px-5 py-2'>
+          <ul className='w-full px-8 py-2'>
             {todo.map((todo, index) => (
-              <Ul index={index} data={[...todo]} editFunction={editData(index)} deleteFunction={() => deleteData(index)}/>
+              <Ul index={index} data={[...todo]} editFunction={() => editData(index)} deleteFunction={() => deleteData(index)}/>
             ))}
           </ul>
         </div>
